@@ -17,7 +17,18 @@ function cb(err, res, body)
             let cols = rows[i].querySelectorAll('td');
             let filmLink = cols[1].querySelector('a').href;
             let new_link = "https://www.imdb.com/" + filmLink;
-            console.log(new_link);
+            
+            request(new_link, cb2);
         }
+    }
+}
+
+let i=0;
+
+function cb2(err, res, body){
+    if(err)
+        console.log(err);
+    else{
+        console.log(i++);
     }
 }
