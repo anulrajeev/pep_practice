@@ -5,6 +5,7 @@ const { JSDOM } = jsdom;
 let link = "https://www.espncricinfo.com/series/ipl-2021-1249214/match-results";
 
 let leaderBoard=[];
+let count=0;
 
 request(link, cb);
 
@@ -19,6 +20,7 @@ function cb(err, res, body)
         for(let i=0;i<scorecardLink.length;i++)
             {
                 let new_link = "https://www.espncricinfo.com/" +  scorecardLink[i].href;
+                count++;
                 request(new_link, cb2);
             }
     }
@@ -49,6 +51,11 @@ function cb2(err, res, body) {
         }
 
     }
+    count--;
+    if(count==0)
+        {
+            console.log(leaderBoard);
+        }
 }
 
 function produceLeaderboardObject(name, runs, balls, fours, sixes)
