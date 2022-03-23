@@ -23,7 +23,7 @@ function cb(err, res, body)
             }
     }
 }
-let i=0;
+
 function cb2(err, res, body) {
     if(err)
         console.log(err);
@@ -39,14 +39,45 @@ function cb2(err, res, body) {
 
                 let name  = cols[0].textContent;
                 let runs  = cols[2].textContent;
-                let balls  = cols[2].textContent;
+                let balls  = cols[3].textContent;
                 let fours = cols[5].textContent;
                 let sixes = cols[6].textContent;
 
-                console.log(name, runs, balls, fours, sixes);
+                produceLeaderboardObject(name, runs, balls, fours, sixes);
             }
                     
         }
 
     }
+}
+
+function produceLeaderboardObject(name, runs, balls, fours, sixes)
+{
+    runs  = Number(runs);
+    balls = Number(balls);
+    fours = Number(fours);
+    sixes = Number(sixes);
+    
+    for(let i=0;i<leaderBoard.length;i++)
+        if(leaderBoard[i].Batsman==name)
+          {
+              leaderBoard[i].Matches+=1;
+              leaderBoard[i].Runs+=runs;
+              leaderBoard[i].Balls+=balls;
+              leaderBoard[i].Fours+=fours;
+              leaderBoard[i].Sixes+=sixes;              
+              return;
+          }
+    
+    let obj = {
+        Batsman : name,
+        Matches : 1,
+        Runs    : runs,
+        Balls   : balls,
+        Fours   : fours,
+        Sixes   : sixes,   
+    };
+
+    leaderBoard.push(obj);
+
 }
