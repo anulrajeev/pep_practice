@@ -15,6 +15,7 @@ function cb(err, res, body)
         let scorecardLink = dom.window.document.querySelectorAll('a[data-hover="Scorecard"]');
         for(let i=0;i<scorecardLink.length;i++)
             {
+                //printing the scorecard link
                 console.log("https://www.espncricinfo.com/" +  scorecardLink[i].href);
             }
     }
