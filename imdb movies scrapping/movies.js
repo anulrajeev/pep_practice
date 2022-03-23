@@ -12,6 +12,12 @@ function cb(err, res, body)
     else{
         const dom = new JSDOM(body);
         let rows = dom.window.document.querySelectorAll(".lister-list tr");
-        console.log(rows.length);
+        for(let i=0;i<rows.length;i++)
+        {
+            let cols = rows[i].querySelectorAll('td');
+            let filmName = cols[1].textContent;
+            let rating = cols[2].textContent;
+            console.log(filmName, rating);
+        }
     }
 }
