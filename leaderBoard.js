@@ -1,6 +1,7 @@
 let request = require('request');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
+const fs = require('fs');
 
 let link = "https://www.espncricinfo.com/series/ipl-2021-1249214/match-results";
 
@@ -54,7 +55,16 @@ function cb2(err, res, body) {
     count--;
     if(count==0)
         {
-            console.log(leaderBoard);
+            const data = JSON.stringify(leaderBoard);
+            fs.writeFileSync('leaderboard.json', data, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("JSON data is saved.");
+            });
+
+            
+
         }
 }
 
