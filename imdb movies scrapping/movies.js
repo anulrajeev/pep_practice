@@ -15,9 +15,9 @@ function cb(err, res, body)
         for(let i=0;i<rows.length;i++)
         {
             let cols = rows[i].querySelectorAll('td');
-            let filmName = cols[1].textContent;
-            let rating = cols[2].textContent;
-            console.log(filmName, rating);
+            let filmLink = cols[1].querySelector('a').href;
+            let new_link = "https://www.imdb.com/" + filmLink;
+            console.log(new_link);
         }
     }
 }
